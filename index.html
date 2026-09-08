@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Political Sports Cards | Collect the Campaign</title>
+<meta name="description" content="Political Sports Cards — the trading card game of politics. Collect, trade, and compete. Get early access before launch.">
+
+<!-- ============================================================
+     PLACEHOLDER GUIDE — search for "REPLACE" to find every spot
+     that needs your real logo, copy, images, links, and video.
+     ============================================================ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg:#0a0d14;
+    --bg-alt:#0f131c;
+    --panel:#141924;
+    --panel-line:#232a3a;
+    --ink:#eef1f7;
+    --ink-dim:#9aa4b8;
+    --gold:#d4af6a;
+    --gold-bright:#f2d38a;
+    --silver:#c7ccd6;
+    --blue:#4f7cff;
+    --red:#ff5b5b;
+    --radius:14px;
+    --maxw:1180px;
+  }
+
+  *,*::before,*::after{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',system-ui,sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{ max-width:100%; display:block; }
+  a{ color:inherit; text-decoration:none; }
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 24px; }
+
+  h1,h2,h3{ font-family:'Bebas Neue',Impact,sans-serif; letter-spacing:0.02em; font-weight:400; margin:0; }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:12px; letter-spacing:0.18em; text-transform:uppercase;
+    color:var(--gold-bright); font-weight:700; margin-bottom:14px;
+  }
+  .eyebrow::before{ content:""; width:22px; height:1px; background:var(--gold-bright); }
+
+  .grad-gold{
+    background:linear-gradient(90deg,#f2d38a,#d4af6a 45%,#f6e2b0 75%,#d4af6a);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    padding:14px 28px; border-radius:999px; font-weight:700; font-size:14px;
+    letter-spacing:0.04em; text-transform:uppercase; cursor:pointer;
+    border:1px solid transparent; transition:transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+  }
+  .btn:active{ transform:scale(0.97); }
+  .btn-gold{
+    background:linear-gradient(135deg,var(--gold-bright),var(--gold));
+    color:#191205; box-shadow:0 8px 24px -8px rgba(212,175,106,0.55);
+  }
+  .btn-gold:hover{ box-shadow:0 10px 30px -6px rgba(212,175,106,0.75); }
+  .btn-ghost{
+    background:transparent; border-color:var(--panel-line); color:var(--ink);
+  }
+  .btn-ghost:hover{ border-color:var(--gold); color:var(--gold-bright); }
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(10,13,20,0.72); backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(255,255,255,0.06);
+  }
+  .nav-inner{ display:flex; align-items:center; justify-content:space-between; padding:14px 24px; max-width:var(--maxw); margin:0 auto; }
+  .logo{ display:flex; align-items:center; gap:10px; font-family:'Bebas Neue',sans-serif; font-size:20px; letter-spacing:0.06em; }
+  .logo svg{ width:30px; height:30px; }
+  .logo .mark2{ color:var(--gold-bright); }
+  nav.links{ display:flex; align-items:center; gap:32px; font-size:13px; font-weight:600; letter-spacing:0.03em; text-transform:uppercase; color:var(--ink-dim); }
+  nav.links a:hover{ color:var(--gold-bright); }
+  .nav-cta{ display:flex; align-items:center; gap:18px; }
+  .burger{ display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:8px; }
+  .burger span{ width:22px; height:2px; background:var(--ink); display:block; }
+
+  .mobile-menu{
+    display:none; position:fixed; inset:0; z-index:99; background:var(--bg);
+    padding:100px 28px 40px; flex-direction:column; gap:26px;
+    font-family:'Bebas Neue',sans-serif; font-size:28px;
+  }
+  .mobile-menu.open{ display:flex; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative; padding:170px 0 120px; overflow:hidden;
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 0%, rgba(212,175,106,0.18), transparent 60%),
+      radial-gradient(ellipse 50% 40% at 85% 20%, rgba(79,124,255,0.12), transparent 60%),
+      radial-gradient(ellipse 50% 40% at 15% 30%, rgba(255,91,91,0.10), transparent 60%),
+      var(--bg);
+  }
+  .hero::before{
+    content:""; position:absolute; inset:0; opacity:0.5; pointer-events:none;
+    background-image:
+      radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.5) 1px, transparent 0),
+      radial-gradient(1px 1px at 80% 15%, rgba(255,255,255,0.4) 1px, transparent 0),
+      radial-gradient(1px 1px at 60% 60%, rgba(255,255,255,0.3) 1px, transparent 0),
+      radial-gradient(1px 1px at 30% 80%, rgba(255,255,255,0.4) 1px, transparent 0),
+      radial-gradient(1px 1px at 90% 75%, rgba(255,255,255,0.3) 1px, transparent 0);
+    background-size:600px 600px;
+  }
+  .hero-inner{ position:relative; text-align:center; z-index:2; }
+  .hero h1{ font-size:clamp(48px,9vw,108px); line-height:0.98; }
+  .hero .sub{ max-width:560px; margin:22px auto 38px; color:var(--ink-dim); font-size:17px; }
+  .hero-ctas{ display:flex; align-items:center; justify-content:center; gap:16px; flex-wrap:wrap; }
+  .hero-note{ margin-top:22px; font-size:12px; color:var(--ink-dim); letter-spacing:0.05em; }
+
+  .scroll-cue{
+    position:absolute; bottom:28px; left:50%; transform:translateX(-50%);
+    display:flex; flex-direction:column; align-items:center; gap:8px;
+    font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:var(--ink-dim);
+  }
+  .scroll-cue .line{ width:1px; height:34px; background:linear-gradient(var(--gold),transparent); animation:pulse 1.8s infinite; }
+  @keyframes pulse{ 0%,100%{opacity:.3} 50%{opacity:1} }
+
+  /* ---------- SECTION SHELL ---------- */
+  section{ padding:110px 0; position:relative; }
+  .section-head{ text-align:center; max-width:640px; margin:0 auto 56px; }
+  .section-head h2{ font-size:clamp(36px,5vw,58px); }
+  .section-head p{ color:var(--ink-dim); margin-top:14px; font-size:16px; }
+  .alt-bg{ background:var(--bg-alt); border-top:1px solid rgba(255,255,255,0.05); border-bottom:1px solid rgba(255,255,255,0.05); }
+
+  .reveal{ opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  /* ---------- TRAILER ---------- */
+  .trailer-box{
+    position:relative; max-width:860px; margin:0 auto; border-radius:var(--radius);
+    overflow:hidden; border:1px solid var(--panel-line);
+    aspect-ratio:16/9; cursor:pointer;
+    background:
+      linear-gradient(135deg, rgba(212,175,106,0.18), rgba(79,124,255,0.12) 50%, rgba(255,91,91,0.14)),
+      var(--panel);
+  }
+  .trailer-box::after{
+    content:""; position:absolute; inset:0;
+    background-image:repeating-linear-gradient(115deg, rgba(255,255,255,0.03) 0 2px, transparent 2px 60px);
+  }
+  .trailer-label{ position:absolute; top:18px; left:18px; font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:var(--ink-dim); background:rgba(0,0,0,0.35); padding:6px 12px; border-radius:999px; border:1px solid var(--panel-line); }
+  .play-btn{
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    width:84px; height:84px; border-radius:50%;
+    background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.25);
+    display:flex; align-items:center; justify-content:center;
+    backdrop-filter:blur(6px); transition:transform .2s ease, background .2s ease;
+  }
+  .trailer-box:hover .play-btn{ transform:translate(-50%,-50%) scale(1.08); background:rgba(255,255,255,0.14); }
+  .play-btn svg{ width:26px; height:26px; margin-left:4px; }
+  .trailer-caption{ text-align:center; margin-top:20px; color:var(--ink-dim); font-size:13px; letter-spacing:0.04em; }
+
+  /* ---------- LINEUP / CARDS ---------- */
+  .lineup-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:22px; }
+  @media (max-width:1000px){ .lineup-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:560px){ .lineup-grid{ grid-template-columns:1fr; max-width:320px; margin:0 auto; } }
+
+  .card{
+    position:relative; border-radius:16px; padding:2px;
+    background:linear-gradient(160deg, var(--gold-bright), var(--panel-line) 30%, var(--panel-line) 70%, var(--silver));
+    transition:transform .25s ease;
+  }
+  .card:hover{ transform:translateY(-8px) rotate(-0.5deg); }
+  .card-inner{
+    background:var(--panel); border-radius:14px; padding:16px; height:100%;
+    display:flex; flex-direction:column; gap:12px;
+  }
+  .card-art{
+    aspect-ratio:3/3.6; border-radius:10px; position:relative; overflow:hidden;
+    display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(160deg,var(--bg-alt),#1b2231);
+    border:1px solid var(--panel-line);
+  }
+  .card-art svg{ width:56%; opacity:0.85; }
+  .rarity{
+    position:absolute; top:10px; right:10px; font-size:9px; letter-spacing:0.1em; text-transform:uppercase;
+    padding:4px 8px; border-radius:999px; font-weight:700;
+  }
+  .rarity.common{ background:rgba(199,204,214,0.15); color:var(--silver); border:1px solid rgba(199,204,214,0.3); }
+  .rarity.rare{ background:rgba(79,124,255,0.15); color:#9db4ff; border:1px solid rgba(79,124,255,0.35); }
+  .rarity.legendary{ background:rgba(212,175,106,0.18); color:var(--gold-bright); border:1px solid rgba(212,175,106,0.4); }
+  .card-name{ font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:0.03em; }
+  .card-role{ font-size:11px; text-transform:uppercase; letter-spacing:0.1em; color:var(--ink-dim); margin-top:-8px; }
+  .stat-row{ display:flex; justify-content:space-between; font-size:12px; color:var(--ink-dim); border-top:1px dashed var(--panel-line); padding-top:8px; }
+  .stat-row b{ color:var(--ink); font-weight:700; }
+  .lineup-note{ text-align:center; margin-top:36px; color:var(--ink-dim); font-size:13px; }
+
+  /* ---------- CONCEPT ---------- */
+  .concept-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:32px; }
+  @media (max-width:800px){ .concept-grid{ grid-template-columns:1fr; max-width:420px; margin:0 auto; } }
+  .concept-item{ text-align:center; padding:32px 22px; border:1px solid var(--panel-line); border-radius:var(--radius); background:var(--panel); }
+  .concept-icon{
+    width:56px; height:56px; margin:0 auto 20px; border-radius:14px;
+    display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(135deg, rgba(212,175,106,0.2), rgba(212,175,106,0.05));
+    border:1px solid rgba(212,175,106,0.3);
+  }
+  .concept-icon svg{ width:26px; height:26px; color:var(--gold-bright); }
+  .concept-item h3{ font-size:24px; margin-bottom:10px; letter-spacing:0.03em; }
+  .concept-item p{ color:var(--ink-dim); font-size:14px; margin:0; }
+  .concept-num{ font-family:'Bebas Neue',sans-serif; color:var(--panel-line); font-size:13px; letter-spacing:0.2em; margin-bottom:10px; }
+
+  /* ---------- APP LAUNCH ---------- */
+  .app-section{ text-align:center; }
+  .app-phone{
+    width:200px; aspect-ratio:9/19; margin:0 auto 36px; border-radius:32px;
+    background:linear-gradient(165deg,#0b0f1a,#050914 60%);
+    border:2px solid var(--panel-line); position:relative; overflow:hidden;
+    box-shadow:0 40px 70px -30px rgba(0,0,0,0.7), 0 0 0 6px rgba(255,255,255,0.02) inset;
+  }
+  .app-phone::before{
+    content:""; position:absolute; top:12px; left:50%; transform:translateX(-50%);
+    width:44%; height:16px; background:#000; border-radius:10px; z-index:2;
+  }
+  .app-phone-screen{ position:absolute; inset:10px; border-radius:24px; padding:34px 14px 14px; display:flex; flex-direction:column; gap:8px; }
+  .app-phone-title{ font-family:'Bebas Neue',sans-serif; font-size:13px; letter-spacing:0.12em; color:var(--gold-bright); text-align:center; margin-bottom:6px; }
+  .app-phone-card{ height:16px; border-radius:6px; background:linear-gradient(90deg, rgba(212,175,106,0.28), rgba(212,175,106,0.08)); border:1px solid var(--panel-line); }
+  .app-phone-card.wide{ height:44px; }
+  .app-phone-card.short{ width:60%; }
+  .app-cta-note{ margin-top:16px; font-size:12px; color:var(--ink-dim); letter-spacing:0.03em; }
+
+  /* ---------- SIGNUP ---------- */
+  .signup-panel{
+    max-width:640px; margin:0 auto; text-align:center; padding:56px 36px; border-radius:20px;
+    border:1px solid var(--panel-line);
+    background:linear-gradient(160deg, rgba(212,175,106,0.08), rgba(255,255,255,0.02));
+  }
+  .signup-form{ display:flex; gap:10px; max-width:420px; margin:28px auto 0; flex-wrap:wrap; justify-content:center; }
+  .signup-form input[type="email"]{
+    flex:1; min-width:200px; padding:14px 18px; border-radius:999px; border:1px solid var(--panel-line);
+    background:var(--bg-alt); color:var(--ink); font-size:14px; outline:none;
+  }
+  .signup-form input[type="email"]:focus{ border-color:var(--gold); }
+  .signup-msg{ margin-top:16px; font-size:13px; color:var(--gold-bright); min-height:18px; }
+  .signup-fine{ margin-top:8px; font-size:11px; color:var(--ink-dim); }
+
+  /* ---------- SOCIAL ---------- */
+  .social-row{ display:flex; justify-content:center; gap:18px; flex-wrap:wrap; }
+  .social-row a{
+    width:46px; height:46px; border-radius:50%; border:1px solid var(--panel-line);
+    display:flex; align-items:center; justify-content:center; transition:border-color .2s ease, color .2s ease;
+    color:var(--ink-dim);
+  }
+  .social-row a:hover{ border-color:var(--gold); color:var(--gold-bright); }
+  .social-row svg{ width:19px; height:19px; }
+
+  /* ---------- FOOTER ---------- */
+  footer{ padding:50px 0 40px; border-top:1px solid rgba(255,255,255,0.06); }
+  .footer-inner{ display:flex; flex-direction:column; align-items:center; gap:16px; text-align:center; }
+  .footer-fine{ color:var(--ink-dim); font-size:11.5px; max-width:640px; line-height:1.7; }
+  .footer-links{ display:flex; gap:20px; font-size:12px; color:var(--ink-dim); flex-wrap:wrap; justify-content:center; }
+  .footer-links a:hover{ color:var(--gold-bright); }
+
+  /* ---------- TRAILER MODAL ---------- */
+  .modal-backdrop{
+    position:fixed; inset:0; background:rgba(6,8,13,0.82); backdrop-filter:blur(4px);
+    display:none; align-items:center; justify-content:center; z-index:200; padding:24px;
+  }
+  .modal-backdrop.open{ display:flex; }
+  .modal-box{
+    background:var(--panel); border:1px solid var(--panel-line); border-radius:16px;
+    padding:40px 32px; max-width:420px; text-align:center;
+  }
+  .modal-box h3{ font-size:28px; margin-bottom:10px; }
+  .modal-box p{ color:var(--ink-dim); font-size:14px; margin-bottom:22px; }
+  .modal-close{ margin-top:18px; font-size:12px; color:var(--ink-dim); cursor:pointer; text-transform:uppercase; letter-spacing:0.08em; }
+
+  @media (max-width:820px){
+    nav.links{ display:none; }
+    .burger{ display:flex; }
+    .nav-cta .btn-ghost{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="logo">
+      <!-- REPLACE: swap this SVG mark for your real logo -->
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2L14.7 8.6L22 9.3L16.5 14L18.2 21L12 17.3L5.8 21L7.5 14L2 9.3L9.3 8.6L12 2Z" fill="url(#g)"/>
+        <defs><linearGradient id="g" x1="0" y1="0" x2="24" y2="24"><stop stop-color="#f2d38a"/><stop offset="1" stop-color="#d4af6a"/></linearGradient></defs>
+      </svg>
+      POLITICAL <span class="mark2">SPORTS CARDS</span>
+    </a>
+    <nav class="links">
+      <a href="#trailer">Trailer</a>
+      <a href="#lineup">The Lineup</a>
+      <a href="#concept">How It Works</a>
+      <a href="#app">The App</a>
+      <a href="#signup">Join</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#app" class="btn btn-ghost" style="padding:10px 20px;">Launch App</a>
+      <button class="burger" id="burgerBtn" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#trailer">Trailer</a>
+  <a href="#lineup">The Lineup</a>
+  <a href="#concept">How It Works</a>
+  <a href="#app">The App</a>
+  <a href="#signup">Join</a>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="wrap hero-inner">
+    <div class="eyebrow" style="justify-content:center;">Launching Soon</div>
+    <!-- REPLACE: your real headline/tagline -->
+    <h1>COLLECT THE<br><span class="grad-gold">CAMPAIGN.</span></h1>
+    <p class="sub">Political Sports Cards turns the biggest game in the country into a collectible one. Real stats, real stakes, zero spin. Pack up. Trade up. Play the season.</p>
+    <div class="hero-ctas">
+      <a href="#trailer" class="btn btn-gold">Watch the Trailer</a>
+      <a href="#signup" class="btn btn-ghost">Join the Draft Class</a>
+    </div>
+    <p class="hero-note">FIRST EDITION DROPS 2026 &nbsp;•&nbsp; LIMITED PRINT RUN</p>
+  </div>
+  <div class="scroll-cue"><span>Scroll</span><span class="line"></span></div>
+</section>
+
+<!-- ============ TRAILER ============ -->
+<section id="trailer">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow" style="justify-content:center;">The 30</div>
+      <h2>Watch the <span class="grad-gold">spot.</span></h2>
+      <p>The commercial that started it all. Full video drops with launch — get on the list to see it first.</p>
+    </div>
+    <div class="trailer-box reveal" id="trailerBox">
+      <span class="trailer-label">00:30 · Coming Soon</span>
+      <div class="play-btn">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M8 5V19L19 12L8 5Z" fill="white"/></svg>
+      </div>
+      <!-- REPLACE: swap this whole .trailer-box div for a real <video> or YouTube/Vimeo embed once your ad is ready -->
+    </div>
+    <p class="trailer-caption">Click to get notified the moment it's live.</p>
+  </div>
+</section>
+
+<!-- ============ LINEUP ============ -->
+<section id="lineup" class="alt-bg">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow" style="justify-content:center;">Series One</div>
+      <h2>The <span class="grad-gold">Lineup.</span></h2>
+      <p>A first look at the roster archetypes. Final card art, names, and stats reveal at launch.</p>
+    </div>
+
+    <div class="lineup-grid">
+
+      <div class="card reveal">
+        <div class="card-inner">
+          <div class="card-art">
+            <span class="rarity legendary">Legendary</span>
+            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#d4af6a" stroke-width="1.4"/><path d="M4 20C4 15.6 7.6 13 12 13C16.4 13 20 15.6 20 20" stroke="#d4af6a" stroke-width="1.4"/></svg>
+          </div>
+          <div class="card-name">THE INCUMBENT</div>
+          <div class="card-role">Placeholder Archetype</div>
+          <div class="stat-row"><span>Approval</span><b>62%</b></div>
+          <div class="stat-row"><span>Bills Passed</span><b>41</b></div>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-inner">
+          <div class="card-art">
+            <span class="rarity rare">Rare</span>
+            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#9db4ff" stroke-width="1.4"/><path d="M4 20C4 15.6 7.6 13 12 13C16.4 13 20 15.6 20 20" stroke="#9db4ff" stroke-width="1.4"/></svg>
+          </div>
+          <div class="card-name">THE CHALLENGER</div>
+          <div class="card-role">Placeholder Archetype</div>
+          <div class="stat-row"><span>Momentum</span><b>78%</b></div>
+          <div class="stat-row"><span>Rallies</span><b>29</b></div>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-inner">
+          <div class="card-art">
+            <span class="rarity rare">Rare</span>
+            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#9db4ff" stroke-width="1.4"/><path d="M4 20C4 15.6 7.6 13 12 13C16.4 13 20 15.6 20 20" stroke="#9db4ff" stroke-width="1.4"/></svg>
+          </div>
+          <div class="card-name">THE SPEAKER</div>
+          <div class="card-role">Placeholder Archetype</div>
+          <div class="stat-row"><span>Deals Closed</span><b>17</b></div>
+          <div class="stat-row"><span>Floor Time</span><b>310h</b></div>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-inner">
+          <div class="card-art">
+            <span class="rarity common">Common</span>
+            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#c7ccd6" stroke-width="1.4"/><path d="M4 20C4 15.6 7.6 13 12 13C16.4 13 20 15.6 20 20" stroke="#c7ccd6" stroke-width="1.4"/></svg>
+          </div>
+          <div class="card-name">THE ROOKIE</div>
+          <div class="card-role">Placeholder Archetype</div>
+          <div class="stat-row"><span>First Term</span><b>Yr 1</b></div>
+          <div class="stat-row"><span>Upside</span><b>★★★★</b></div>
+        </div>
+      </div>
+
+    </div>
+    <p class="lineup-note">REPLACE: swap in your real card names, photos/illustrations, and stat categories.</p>
+  </div>
+</section>
+
+<!-- ============ CONCEPT ============ -->
+<section id="concept">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow" style="justify-content:center;">The Format</div>
+      <h2>How it <span class="grad-gold">works.</span></h2>
+      <p>Political Sports Cards borrows the format collectors already love and points it at the news cycle.</p>
+    </div>
+    <div class="concept-grid">
+      <div class="concept-item reveal">
+        <div class="concept-num">01</div>
+        <div class="concept-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="12" height="17" rx="2"/><rect x="8" y="7" width="12" height="17" rx="2" fill="#0a0d14"/></svg>
+        </div>
+        <h3>Collect</h3>
+        <p>Open packs across the season. Every card is numbered, rated, and built for the binder.</p>
+      </div>
+      <div class="concept-item reveal">
+        <div class="concept-num">02</div>
+        <div class="concept-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 10L3 14L7 18"/><path d="M17 6L21 10L17 14"/><path d="M3 14H14"/><path d="M10 10H21"/></svg>
+        </div>
+        <h3>Trade</h3>
+        <p>Build your roster with the community. Chase the rare pulls, complete the set.</p>
+      </div>
+      <div class="concept-item reveal">
+        <div class="concept-num">03</div>
+        <div class="concept-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2L14.7 8.6L22 9.3L16.5 14L18.2 21L12 17.3L5.8 21L7.5 14L2 9.3L9.3 8.6L12 2Z"/></svg>
+        </div>
+        <h3>Compete</h3>
+        <p>Live stats update every card through the season. Bragging rights included.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ APP LAUNCH ============ -->
+<section id="app">
+  <div class="wrap app-section">
+    <div class="section-head reveal">
+      <div class="eyebrow" style="justify-content:center;">Live Now</div>
+      <h2>Enter <span class="grad-gold">Civic Cards.</span></h2>
+      <p>The card dashboard is live. Browse the roster, check stats, and start building your collection right now.</p>
+    </div>
+
+    <div class="app-phone reveal">
+      <div class="app-phone-screen">
+        <div class="app-phone-title">CIVIC CARDS</div>
+        <div class="app-phone-card wide"></div>
+        <div class="app-phone-card"></div>
+        <div class="app-phone-card short"></div>
+        <div class="app-phone-card wide"></div>
+      </div>
+    </div>
+
+    <!-- REPLACE: update this href if the app ever moves to your own domain -->
+    <a href="https://political-sports-cards-072526.ai.studio/" target="_blank" rel="noopener" class="btn btn-gold reveal">
+      Launch the App ↗
+    </a>
+    <p class="app-cta-note reveal">Opens in a new tab · Optimized for mobile</p>
+  </div>
+</section>
+
+<!-- ============ SIGNUP ============ -->
+<section id="signup" class="alt-bg">
+  <div class="wrap">
+    <div class="signup-panel reveal">
+      <div class="eyebrow" style="justify-content:center;">Early Access</div>
+      <h2 style="font-size:clamp(30px,4vw,44px);">Join the <span class="grad-gold">draft class.</span></h2>
+      <p style="color:var(--ink-dim); font-size:15px; margin-top:10px;">Be first to see the trailer, the checklist, and pre-order windows.</p>
+      <form class="signup-form" id="signupForm">
+        <!-- REPLACE: wire this up to your email service (Mailchimp, ConvertKit, Formspree, etc.) -->
+        <input type="email" id="signupEmail" placeholder="you@email.com" required>
+        <button type="submit" class="btn btn-gold">Notify Me</button>
+      </form>
+      <p class="signup-msg" id="signupMsg"></p>
+      <p class="signup-fine">No spam. Just launch-day intel.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOCIAL ============ -->
+<section style="padding:80px 0;">
+  <div class="wrap">
+    <div class="section-head reveal" style="margin-bottom:36px;">
+      <h2 style="font-size:28px;">Follow the season</h2>
+    </div>
+    <div class="social-row reveal">
+      <!-- REPLACE: point these at your real profiles -->
+      <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+      <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 4v10.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 4c0 3 2.5 5 5 5"/></svg></a>
+      <a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4L20 20"/><path d="M20 4L4 20"/></svg></a>
+      <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="6" width="18" height="12" rx="4"/><path d="M10.5 9.5L15 12L10.5 14.5V9.5Z" fill="currentColor"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap footer-inner">
+    <div class="logo" style="font-size:16px;">
+      <svg viewBox="0 0 24 24" fill="none" width="20" height="20"><path d="M12 2L14.7 8.6L22 9.3L16.5 14L18.2 21L12 17.3L5.8 21L7.5 14L2 9.3L9.3 8.6L12 2Z" fill="#d4af6a"/></svg>
+      POLITICAL <span style="color:var(--gold-bright);">SPORTS CARDS</span>
+    </div>
+    <div class="footer-links">
+      <a href="#top">Home</a>
+      <a href="#lineup">The Lineup</a>
+      <a href="mailto:hello@example.com">Contact</a> <!-- REPLACE with your real email -->
+    </div>
+    <p class="footer-fine">
+      Political Sports Cards is a satirical collectible card product created for entertainment purposes.
+      It is not affiliated with, endorsed by, or sponsored by any political party, campaign, candidate, or government entity.
+      Card names, stats, and likenesses on this placeholder site are fictional. <!-- REPLACE/adjust this notice with your attorney once real names or likenesses are used -->
+    </p>
+    <p class="footer-fine">© 2026 Political Sports Cards. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- ============ TRAILER MODAL ============ -->
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal-box">
+    <h3>Trailer dropping soon</h3>
+    <p>The 30-second spot is in production. Pop your email in and we'll send it to you the second it's live.</p>
+    <a href="#signup" class="btn btn-gold" id="modalCta">Join the Draft Class</a>
+    <div class="modal-close" id="modalClose">Close</div>
+  </div>
+</div>
+
+<script>
+  // Mobile menu toggle
+  const burger = document.getElementById('burgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  burger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+  // Trailer modal
+  const trailerBox = document.getElementById('trailerBox');
+  const modalBackdrop = document.getElementById('modalBackdrop');
+  const modalClose = document.getElementById('modalClose');
+  const modalCta = document.getElementById('modalCta');
+  trailerBox.addEventListener('click', () => modalBackdrop.classList.add('open'));
+  modalClose.addEventListener('click', () => modalBackdrop.classList.remove('open'));
+  modalCta.addEventListener('click', () => modalBackdrop.classList.remove('open'));
+  modalBackdrop.addEventListener('click', (e) => { if(e.target === modalBackdrop) modalBackdrop.classList.remove('open'); });
+
+  // Signup form (front-end only placeholder — wire to a real email service)
+  const signupForm = document.getElementById('signupForm');
+  const signupMsg = document.getElementById('signupMsg');
+  signupForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    const email = document.getElementById('signupEmail').value;
+    if(email){
+      signupMsg.textContent = "You're on the list — welcome to the draft class.";
+      signupForm.reset();
+      // REPLACE: send `email` to your email service / backend here
+    }
+  });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if(entry.isIntersecting){ entry.target.classList.add('in'); io.unobserve(entry.target); } });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>

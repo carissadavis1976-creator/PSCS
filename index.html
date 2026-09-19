@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Political Sports Cards | The ESPN of Democracy</title>
-<meta name="description" content="Political Sports Cards — the trading card game of politics. Collect, trade, and compete. Get early access before launch.">
+<meta name="description" content="Political Sports Cards — the ESPN of democracy. Real voting records, campaign finance, and ethics data turned into collectible stats. 100% math, 0% opinion. Get early access before launch.">
 
 <!-- ============================================================
      PLACEHOLDER GUIDE — search for "REPLACE" to find every spot
@@ -105,12 +105,12 @@
     border-bottom:1px solid rgba(255,255,255,0.06);
   }
   .nav-inner{ display:flex; align-items:center; justify-content:space-between; padding:14px 24px; max-width:var(--maxw); margin:0 auto; }
-  .logo{ display:flex; align-items:center; gap:10px; font-family:'Bebas Neue',sans-serif; font-size:20px; letter-spacing:0.06em; }
-  .logo img.mark{ height:30px; width:auto; display:block; border-radius:6px; }
+  .logo{ display:flex; align-items:center; gap:10px; font-family:'Bebas Neue',sans-serif; font-size:20px; letter-spacing:0.06em; white-space:nowrap; flex-shrink:0; }
+  .logo img.mark{ height:30px; width:auto; display:block; border-radius:6px; flex-shrink:0; }
   .logo .mark2{ color:var(--gold-bright); }
-  nav.links{ display:flex; align-items:center; gap:32px; font-size:13px; font-weight:600; letter-spacing:0.03em; text-transform:uppercase; color:var(--ink-dim); }
+  nav.links{ display:flex; align-items:center; gap:32px; font-size:13px; font-weight:600; letter-spacing:0.03em; text-transform:uppercase; color:var(--ink-dim); white-space:nowrap; }
   nav.links a:hover{ color:var(--gold-bright); }
-  .nav-cta{ display:flex; align-items:center; gap:18px; }
+  .nav-cta{ display:flex; align-items:center; gap:18px; flex-shrink:0; white-space:nowrap; }
   .burger{ display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:8px; }
   .burger span{ width:22px; height:2px; background:var(--ink); display:block; }
 
@@ -141,9 +141,18 @@
     background-size:600px 600px;
   }
   .hero-inner{ position:relative; text-align:center; z-index:2; }
+  .hero-brand{ display:flex; align-items:center; justify-content:center; gap:16px; margin:0 auto 28px; flex-wrap:wrap; }
   .hero-logo{
-    width:150px; max-width:40vw; margin:0 auto 28px; border-radius:28px; overflow:hidden;
+    width:72px; height:72px; flex-shrink:0; margin:0; border-radius:18px; overflow:hidden;
     border:1px solid rgba(34,211,238,0.25); box-shadow:0 20px 50px -25px rgba(0,0,0,0.65), 0 0 50px -12px rgba(34,211,238,0.45);
+  }
+  .hero-wordmark{
+    font-family:'Bebas Neue',sans-serif; font-size:clamp(26px,4vw,38px); letter-spacing:0.05em; color:var(--ink);
+  }
+  .hero-wordmark .mark2{ color:var(--gold-bright); }
+  @media (max-width:480px){
+    .hero-logo{ width:52px; height:52px; border-radius:14px; }
+    .hero-wordmark{ font-size:22px; }
   }
   .hero h1{ font-size:clamp(48px,9vw,108px); line-height:0.98; }
   .hero .sub{ max-width:560px; margin:22px auto 38px; color:var(--ink-dim); font-size:17px; }
@@ -228,6 +237,28 @@
   .stat-row b{ color:var(--ink); font-weight:700; }
   .lineup-note{ text-align:center; margin-top:36px; color:var(--ink-dim); font-size:13px; }
 
+  /* ---------- WHY PSC ---------- */
+  .why-grid{ display:flex; flex-direction:column; gap:16px; max-width:800px; margin:0 auto; }
+  .why-row{
+    display:grid; grid-template-columns:1fr auto 1fr; gap:20px; align-items:center;
+    padding:22px 26px; border:1px solid var(--panel-line); border-radius:var(--radius); background:var(--panel);
+  }
+  .why-old,.why-new{ font-size:14px; color:var(--ink-dim); }
+  .why-old b,.why-new b{ display:block; font-size:12px; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:5px; }
+  .why-old b{ color:var(--ink); }
+  .why-new{ color:var(--ink); }
+  .why-new b{ color:var(--gold-bright); }
+  .why-arrow{ color:var(--gold); font-size:20px; text-align:center; }
+  @media (max-width:700px){
+    .why-row{ grid-template-columns:1fr; text-align:center; }
+    .why-arrow{ transform:rotate(90deg); }
+  }
+
+  /* ---------- FOUNDERS ---------- */
+  .founders-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:32px; max-width:660px; margin:0 auto; }
+  @media (max-width:640px){ .founders-grid{ grid-template-columns:1fr; max-width:420px; } }
+  .founder-role{ font-size:12px; text-transform:uppercase; letter-spacing:0.06em; color:var(--gold-bright); margin:-4px 0 12px; }
+
   /* ---------- CONCEPT ---------- */
   .concept-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:32px; }
   @media (max-width:800px){ .concept-grid{ grid-template-columns:1fr; max-width:420px; margin:0 auto; } }
@@ -308,15 +339,28 @@
   .modal-box p{ color:var(--ink-dim); font-size:14px; margin-bottom:22px; }
   .modal-close{ margin-top:18px; font-size:12px; color:var(--ink-dim); cursor:pointer; text-transform:uppercase; letter-spacing:0.08em; }
 
-  @media (max-width:820px){
+  @media (max-width:1180px){
+    /* Raised from 820px: with 6 nav links plus a wordmark logo and a CTA
+       pill, the full row can't fit without wrapping/overlapping below this
+       width — especially once the CTA reads "Coming Soon" instead of the
+       shorter "Launch App". Switching to the burger menu here keeps every
+       state on one clean line. */
     nav.links{ display:none; }
     .burger{ display:flex; }
     .nav-cta .btn-ghost{ display:none; }
   }
   @media (max-width:480px){
-    /* Keeps the nav on one line on small phones — the logo image already
-       reads "PSC" clearly on its own, so the spelled-out name can drop. */
-    .logo-text{ display:none; }
+    /* Shrinks (rather than hides) the wordmark so "Political Sports Cards"
+       still shows next to the icon without wrapping onto a second line and
+       colliding with the burger button. */
+    .nav-inner{ padding:14px 14px 14px 18px; }
+    .logo{ font-size:14px; gap:7px; letter-spacing:0.03em; }
+    .logo img.mark{ height:24px; }
+    .nav-cta{ gap:6px; }
+  }
+  @media (max-width:360px){
+    .logo{ font-size:12px; gap:6px; }
+    .logo img.mark{ height:22px; }
   }
 </style>
 </head>
@@ -343,6 +387,7 @@
       <nav class="links">
         <a href="#trailer">Trailer</a>
         <a href="#lineup">The Lineup</a>
+        <a href="#why">Why PSC</a>
         <a href="#concept">How It Works</a>
         <a href="#app">The App</a>
         <a href="#signup">Join</a>
@@ -360,6 +405,7 @@
 <div class="mobile-menu" id="mobileMenu">
   <a href="#trailer">Trailer</a>
   <a href="#lineup">The Lineup</a>
+  <a href="#why">Why PSC</a>
   <a href="#concept">How It Works</a>
   <a href="#app">The App</a>
   <a href="#signup">Join</a>
@@ -368,11 +414,13 @@
 <!-- ============ HERO ============ -->
 <section class="hero" id="top">
   <div class="wrap hero-inner">
-    <img class="hero-logo" src="assets/psc-icon-hero.jpg" alt="Political Sports Cards mark">
+    <div class="hero-brand">
+      <img class="hero-logo" src="assets/psc-icon-hero.jpg" alt="Political Sports Cards mark">
+      <span class="hero-wordmark">POLITICAL <span class="mark2">SPORTS CARDS</span></span>
+    </div>
     <div class="eyebrow" style="justify-content:center;">Launching Soon</div>
-    <!-- REPLACE: your real headline/tagline -->
     <h1>THE ESPN OF<br><span class="grad-gold">DEMOCRACY.</span></h1>
-    <p class="sub">Political Sports Cards turns the biggest game in the country into a collectible one. Real stats, real stakes, zero spin. Pack up. Trade up. Play the season.</p>
+    <p class="sub">"Don't tell me who to vote for — show me the stats." Political Sports Cards turns public voting records, campaign filings, and government data into real, comparable stats. 100% math. 0% opinion. Zero spin.</p>
     <div class="hero-ctas">
       <a href="#trailer" class="btn btn-gold">Watch the Trailer</a>
       <a href="#signup" class="btn btn-ghost">Join the Draft Class</a>
@@ -420,8 +468,8 @@
           </div>
           <div class="card-name">THE INCUMBENT</div>
           <div class="card-role">Placeholder Archetype</div>
-          <div class="stat-row"><span>Approval</span><b>62%</b></div>
-          <div class="stat-row"><span>Bills Passed</span><b>41</b></div>
+          <div class="stat-row"><span>Voting Record</span><b>98%</b></div>
+          <div class="stat-row"><span>Ethics Compliance</span><b>100%</b></div>
         </div>
       </div>
 
@@ -433,8 +481,8 @@
           </div>
           <div class="card-name">THE CHALLENGER</div>
           <div class="card-role">Placeholder Archetype</div>
-          <div class="stat-row"><span>Momentum</span><b>78%</b></div>
-          <div class="stat-row"><span>Rallies</span><b>29</b></div>
+          <div class="stat-row"><span>Campaign Finance</span><b>15%</b></div>
+          <div class="stat-row"><span>Transparency</span><b>92%</b></div>
         </div>
       </div>
 
@@ -446,8 +494,8 @@
           </div>
           <div class="card-name">THE SPEAKER</div>
           <div class="card-role">Placeholder Archetype</div>
-          <div class="stat-row"><span>Deals Closed</span><b>17</b></div>
-          <div class="stat-row"><span>Floor Time</span><b>310h</b></div>
+          <div class="stat-row"><span>Bipartisan Bills</span><b>30%</b></div>
+          <div class="stat-row"><span>Constituent Impact</span><b>84%</b></div>
         </div>
       </div>
 
@@ -459,13 +507,46 @@
           </div>
           <div class="card-name">THE ROOKIE</div>
           <div class="card-role">Placeholder Archetype</div>
-          <div class="stat-row"><span>First Term</span><b>Yr 1</b></div>
-          <div class="stat-row"><span>Upside</span><b>★★★★</b></div>
+          <div class="stat-row"><span>Voting Record</span><b>91%</b></div>
+          <div class="stat-row"><span>Bipartisan Bills</span><b>22%</b></div>
         </div>
       </div>
 
     </div>
-    <p class="lineup-note">REPLACE: swap in your real card names, photos/illustrations, and stat categories.</p>
+    <p class="lineup-note">Every card scores across all 6 pillars — Voting Record, Bipartisan/Co-Sponsored Bills, Constituent Impact, Campaign Finance, Transparency, and Ethics Compliance. Real candidate names, photos, and full stat sheets arrive at launch.</p>
+  </div>
+</section>
+
+<!-- ============ WHY PSC ============ -->
+<section id="why" class="alt-bg">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow" style="justify-content:center;">Why PSC</div>
+      <h2>Voters are <span class="grad-gold">exhausted.</span></h2>
+      <p>86% of Americans report exhaustion from political spin and infighting. Records are scattered across thousands of portals, and cable news turns single votes into soundbites. PSC replaces all of that with one number, pulled straight from the source.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-row reveal">
+        <div class="why-old"><b>Hidden Campaign Money</b>Massive Super PAC and corporate influence, buried in filings.</div>
+        <div class="why-arrow">→</div>
+        <div class="why-new"><b>Automated Donor Breakdown</b>Small-dollar donors vs. corporate &amp; Super PAC money, visualized instantly.</div>
+      </div>
+      <div class="why-row reveal">
+        <div class="why-old"><b>Media Bias &amp; Spin</b>500-page bills condensed into partisan soundbites.</div>
+        <div class="why-arrow">→</div>
+        <div class="why-new"><b>100% Math, 0% Opinion</b>Every score pulled straight from official government archives.</div>
+      </div>
+      <div class="why-row reveal">
+        <div class="why-old"><b>Scattered Records</b>Roll-calls, filings, and disclosures spread across thousands of portals.</div>
+        <div class="why-arrow">→</div>
+        <div class="why-new"><b>All-in-One Command Center</b>500,000+ officials across 87,000 offices, one dashboard.</div>
+      </div>
+      <div class="why-row reveal">
+        <div class="why-old"><b>Conflicts of Interest</b>Untracked stock trades and disclosure delays.</div>
+        <div class="why-arrow">→</div>
+        <div class="why-new"><b>Ethics &amp; Disclosure Tracker</b>Stock trades, filings, and sanctions, tracked in real time.</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -501,6 +582,29 @@
         </div>
         <h3>Compete</h3>
         <p>Live stats update every card through the season. Bragging rights included.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOUNDERS ============ -->
+<section id="founders" class="alt-bg">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow" style="justify-content:center;">The Team</div>
+      <h2>Built by <span class="grad-gold">believers.</span></h2>
+      <p>Political Sports Cards is built by two people who think democracy works better with better stats.</p>
+    </div>
+    <div class="founders-grid">
+      <div class="concept-item reveal">
+        <h3>Darrick Murphy</h3>
+        <div class="founder-role">Founder &amp; Executive Lead</div>
+        <p>Oversees product vision, UI/UX gamification strategy, growth operations, and platform partnerships.</p>
+      </div>
+      <div class="concept-item reveal">
+        <h3>Carissa Davis</h3>
+        <div class="founder-role">Lead Software Engineer / CIO</div>
+        <p>Directs automated data ingestion architecture, cloud scalability, API development, and cybersecurity.</p>
       </div>
     </div>
   </div>
@@ -580,9 +684,12 @@
       <a href="mailto:hello@example.com">Contact</a> <!-- REPLACE with your real email -->
     </div>
     <p class="footer-fine">
-      Political Sports Cards is a satirical collectible card product created for entertainment purposes.
-      It is not affiliated with, endorsed by, or sponsored by any political party, campaign, candidate, or government entity.
-      Card names, stats, and likenesses on this placeholder site are fictional. <!-- REPLACE/adjust this notice with your attorney once real names or likenesses are used -->
+      Political Sports Cards is a nonpartisan civic education platform. Every score is generated through
+      automated, equal-weighted formulas applied to verified public government data (e.g. Congress.gov, FEC.gov,
+      state ethics registries) — never opinion, editorial judgment, or paid influence. PSC does not endorse,
+      oppose, or accept advertising, sponsorships, or contributions from any political candidate, campaign,
+      party, or PAC. The archetype cards shown on this pre-launch site are illustrative placeholders; real
+      candidate cards and sourced data debut at launch. <!-- Review with counsel before adding real candidate names/likenesses -->
     </p>
     <p class="footer-fine">© 2026 Political Sports Cards. All rights reserved.</p>
   </div>
@@ -653,7 +760,7 @@
   // Set to false to hide the live link and show "App Coming Soon" instead —
   // use this when the Civic Cards app is down for maintenance, or you just
   // don't want it publicly linked yet. Set back to true when it's ready.
-  const APP_LIVE = true;
+  const APP_LIVE = false;
   // ──────────────────────────────────────────────────────────────────────────
 
   document.addEventListener('DOMContentLoaded', function () {
@@ -669,11 +776,14 @@
     links.forEach(function (link) {
       link.removeAttribute('href');
       link.removeAttribute('target');
-      link.textContent = 'App Coming Soon';
+      // Shorter label in the tight nav pill so it can't wrap and squeeze the
+      // logo; the roomier hero/app-section button keeps the fuller label.
+      link.textContent = link.closest('.nav-cta') ? 'Coming Soon' : 'App Coming Soon';
       link.style.opacity = '0.5';
       link.style.cursor = 'not-allowed';
+      link.style.whiteSpace = 'nowrap';
       link.setAttribute('aria-disabled', 'true');
-      link.addEventListener('click', function (e) { e.preventDefault(); });
+      link.addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); });
     });
   });
 </script>

@@ -597,5 +597,35 @@
   revealEls.forEach(el => io.observe(el));
 </script>
 
+<script>
+  // ── APP AVAILABILITY TOGGLE ──────────────────────────────────────────────
+  // Set to false to hide the live link and show "App Coming Soon" instead —
+  // use this when the Civic Cards app is down for maintenance, or you just
+  // don't want it publicly linked yet. Set back to true when it's ready.
+  const APP_LIVE = false;
+  // ──────────────────────────────────────────────────────────────────────────
+
+  document.addEventListener('DOMContentLoaded', function () {
+    if (APP_LIVE) return; // nothing to change when the app is live
+
+    const appUrl = 'https://political-sports-cards-072526.ai.studio/';
+    // Scoped narrowly: the real app-launch button (by its real URL), plus the
+    // "Launch App" nav-cta button specifically — NOT the "The App" links in
+    // the nav/mobile menu, which just scroll down to this section and should
+    // keep working even when the app itself is offline.
+    const links = document.querySelectorAll('a[href="' + appUrl + '"], .nav-cta a[href="#app"]');
+
+    links.forEach(function (link) {
+      link.removeAttribute('href');
+      link.removeAttribute('target');
+      link.textContent = 'App Coming Soon';
+      link.style.opacity = '0.5';
+      link.style.cursor = 'not-allowed';
+      link.setAttribute('aria-disabled', 'true');
+      link.addEventListener('click', function (e) { e.preventDefault(); });
+    });
+  });
+</script>
+
 </body>
 </html>

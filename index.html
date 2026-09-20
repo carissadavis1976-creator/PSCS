@@ -257,6 +257,7 @@
   /* ---------- FOUNDERS ---------- */
   .founders-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:32px; max-width:660px; margin:0 auto; }
   @media (max-width:640px){ .founders-grid{ grid-template-columns:1fr; max-width:420px; } }
+  .founders-grid-single{ grid-template-columns:1fr; max-width:320px; }
   .founder-role{ font-size:12px; text-transform:uppercase; letter-spacing:0.06em; color:var(--gold-bright); margin:-4px 0 12px; }
 
   /* ---------- CONCEPT ---------- */
@@ -593,18 +594,13 @@
     <div class="section-head reveal">
       <div class="eyebrow" style="justify-content:center;">The Team</div>
       <h2>Built by <span class="grad-gold">believers.</span></h2>
-      <p>Political Sports Cards is built by two people who think democracy works better with better stats.</p>
+      <p>Political Sports Cards is built by people who think democracy works better with better stats.</p>
     </div>
-    <div class="founders-grid">
+    <div class="founders-grid founders-grid-single">
       <div class="concept-item reveal">
         <h3>Darrick Murphy</h3>
         <div class="founder-role">Founder &amp; Executive Lead</div>
         <p>Oversees product vision, UI/UX gamification strategy, growth operations, and platform partnerships.</p>
-      </div>
-      <div class="concept-item reveal">
-        <h3>Carissa Davis</h3>
-        <div class="founder-role">Lead Software Engineer / CIO</div>
-        <p>Directs automated data ingestion architecture, cloud scalability, API development, and cybersecurity.</p>
       </div>
     </div>
   </div>
@@ -644,9 +640,12 @@
       <div class="eyebrow" style="justify-content:center;">Early Access</div>
       <h2 style="font-size:clamp(30px,4vw,44px);">Join the <span class="grad-gold">draft class.</span></h2>
       <p style="color:var(--ink-dim); font-size:15px; margin-top:10px;">Be first to see the trailer, the checklist, and pre-order windows.</p>
-      <form class="signup-form" id="signupForm">
-        <!-- REPLACE: wire this up to your email service (Mailchimp, ConvertKit, Formspree, etc.) -->
-        <input type="email" id="signupEmail" placeholder="you@email.com" required>
+      <!-- REPLACE "YOUR_FORM_ID": create a free account at formspree.io, add and
+           verify darrickmurphy@politicalsportscards.org as this form's
+           recipient, then paste the endpoint Formspree gives you here. -->
+      <form class="signup-form" id="signupForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <input type="hidden" name="_subject" value="New Political Sports Cards early access signup">
+        <input type="email" name="email" id="signupEmail" placeholder="you@email.com" required>
         <button type="submit" class="btn btn-gold">Notify Me</button>
       </form>
       <p class="signup-msg" id="signupMsg"></p>
@@ -734,17 +733,32 @@
   modalCta.addEventListener('click', () => modalBackdrop.classList.remove('open'));
   modalBackdrop.addEventListener('click', (e) => { if(e.target === modalBackdrop) modalBackdrop.classList.remove('open'); });
 
-  // Signup form (front-end only placeholder — wire to a real email service)
+  // Signup form — submits to Formspree (see the "REPLACE YOUR_FORM_ID" note
+  // on the <form> tag above), which emails each signup to whichever address
+  // you verify on your Formspree account. Submits quietly via fetch so the
+  // visitor never leaves the page; falls back to a normal form POST if
+  // JavaScript is unavailable.
   const signupForm = document.getElementById('signupForm');
   const signupMsg = document.getElementById('signupMsg');
   signupForm.addEventListener('submit', function(e){
     e.preventDefault();
     const email = document.getElementById('signupEmail').value;
-    if(email){
-      signupMsg.textContent = "You're on the list — welcome to the draft class.";
-      signupForm.reset();
-      // REPLACE: send `email` to your email service / backend here
-    }
+    if(!email) return;
+    signupMsg.textContent = 'Submitting…';
+    fetch(signupForm.action, {
+      method: 'POST',
+      body: new FormData(signupForm),
+      headers: { 'Accept': 'application/json' }
+    }).then(function(response){
+      if(response.ok){
+        signupMsg.textContent = "You're on the list — welcome to the draft class.";
+        signupForm.reset();
+      } else {
+        signupMsg.textContent = "Something went wrong — please try again.";
+      }
+    }).catch(function(){
+      signupMsg.textContent = "Something went wrong — please try again.";
+    });
   });
 
   // Scroll reveal
